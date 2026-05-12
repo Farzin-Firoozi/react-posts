@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type FC } from 'react'
 
 import { useKeyEvent } from '@/hooks/useKeyEvent'
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll'
 import { useScrollDirection } from '@/hooks/useScrollDirection'
-import { useSearchParam } from '@/hooks/useSearchParam'
 
 import logoSrc from '@/assets/logo.svg'
 
@@ -11,8 +10,13 @@ import styles from './Header.module.scss'
 import HeaderDesktop from './HeaderDesktop'
 import HeaderMobile from './HeaderMobile'
 
-export default function Header() {
-  const [search, setSearch] = useSearchParam()
+interface HeaderProps {
+  search: string
+  setSearch: (search: string) => void
+}
+
+const Header: FC<HeaderProps> = (props) => {
+  const { search, setSearch } = props
 
   const headerRef = useRef<HTMLElement>(null)
   const headerHeight = useRef(0)
@@ -126,3 +130,5 @@ export default function Header() {
     </>
   )
 }
+
+export default Header

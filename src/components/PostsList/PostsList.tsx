@@ -1,12 +1,10 @@
 import type { FC } from 'react'
 
+import type { Post } from '@/hooks/usePosts'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 import Message from '@/components/Message'
 import PostCard from '@/components/PostCard'
-
-import type { Post } from '@/hooks/usePosts'
-import { useSearchParam } from '@/hooks/useSearchParam'
 
 import styles from './PostsList.module.scss'
 
@@ -15,12 +13,11 @@ const SKELETON_COUNT = 6
 interface PostsListProps {
   posts: Post[]
   loading?: boolean
+  search?: string
 }
 
 const PostsList: FC<PostsListProps> = (props) => {
-  const { posts, loading = false } = props
-
-  const [search] = useSearchParam()
+  const { posts, loading = false, search } = props
 
   const [gridRef] = useAutoAnimate<HTMLDivElement>()
 

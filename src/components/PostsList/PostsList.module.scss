@@ -5,9 +5,8 @@ $col-gap: 1.5rem;
 .section {
   max-width: $container-max;
   margin: 3rem auto 0;
-  padding: 0 $container-px;
+  padding: 0 $container-px $container-px;
 }
-
 
 .grid {
   display: flex;
