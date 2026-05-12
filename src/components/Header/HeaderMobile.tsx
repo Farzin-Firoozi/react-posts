@@ -1,6 +1,7 @@
 import { useState, type FC } from 'react'
 
 import logoSrc from '../../assets/logo.svg'
+import { Icon } from '@/components/Icon'
 import { NAV_ITEMS, type NavItem } from '../../constants/navigation'
 import styles from './Header.module.scss'
 
@@ -43,7 +44,7 @@ const DrawerNav: FC<DrawerNavProps> = (props) => {
                     .filter(Boolean)
                     .join(' ')}
                 >
-                  <img src="/icons/chevron-down.svg" alt="Chevron down" />
+                  <Icon name="chevron-down" size={10} />
                 </span>
               </button>
             ) : (
@@ -76,10 +77,7 @@ const DrawerNav: FC<DrawerNavProps> = (props) => {
                         aria-disabled={sub.disabled}
                       >
                         <span>{sub.label}</span>
-                        <img
-                          src="/icons/chevron-right.svg"
-                          alt="Chevron right"
-                        />
+                        <Icon name="right" size={8} />
                       </a>
                     </li>
                   ))}
@@ -123,7 +121,7 @@ export default function HeaderMobile({ open, onClose }: HeaderMobileProps) {
             onClick={onClose}
             aria-label="Close menu"
           >
-            <img src="/icons/close.svg" alt="Close" />
+            <Icon name="close" size={16} alt="" />
           </button>
         </div>
         <DrawerNav items={NAV_ITEMS} onClose={onClose} />

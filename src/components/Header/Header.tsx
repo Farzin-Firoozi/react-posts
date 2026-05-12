@@ -4,6 +4,8 @@ import { useKeyEvent } from '@/hooks/useKeyEvent'
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll'
 import { useScrollDirection } from '@/hooks/useScrollDirection'
 
+import { Icon } from '@/components/Icon'
+
 import logoSrc from '@/assets/logo.svg'
 
 import styles from './Header.module.scss'
@@ -82,8 +84,14 @@ const Header: FC<HeaderProps> = (props) => {
             >
               <img src="/icons/hamburger.svg" alt="Hamburger" />
             </button>
+
             <a href="/" className={styles.logoLink} aria-label="Home">
-              <img src={logoSrc} alt="Logotype" className={styles.logo} />
+              <img
+                src={logoSrc}
+                alt="Logotype"
+                loading="eager"
+                className={styles.logo}
+              />
             </a>
             <div className={styles.searchArea}>
               <button
@@ -92,7 +100,7 @@ const Header: FC<HeaderProps> = (props) => {
                 onClick={() => setSearchOpen((v) => !v)}
                 aria-expanded={searchOpen}
               >
-                <img src="/icons/search.svg" alt="Search" />
+                <Icon name="search" size={19} alt="" />
               </button>
             </div>
           </div>
@@ -118,7 +126,7 @@ const Header: FC<HeaderProps> = (props) => {
                 onClick={() => setSearchOpen(false)}
                 aria-label="Close search"
               >
-                <img src="/icons/close.svg" alt="Close" />
+                <Icon name="close" size={16} alt="" />
               </button>
             </div>
           </div>

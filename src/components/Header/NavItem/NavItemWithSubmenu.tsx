@@ -1,4 +1,9 @@
-import type { NavItem } from '../../../constants/navigation'
+import type { NavItem } from '@/constants/navigation'
+
+import { Icon } from '@/components/Icon'
+
+import { cn } from '@/utils/cn'
+
 import styles from '../Header.module.scss'
 
 type NavItemWithSubmenuProps = {
@@ -10,9 +15,7 @@ export function NavItemWithSubmenu({ item }: NavItemWithSubmenuProps) {
     <li className={styles.navItem}>
       <a href="#" className={styles.navLink}>
         <span>{item.label}</span>
-        {item.hasChevron && (
-          <img src="/icons/chevron-down.svg" alt="Chevron down" />
-        )}
+        {item.hasChevron && <Icon name="chevron-down" size={10} />}
       </a>
 
       {item.submenu && (
@@ -21,18 +24,16 @@ export function NavItemWithSubmenu({ item }: NavItemWithSubmenuProps) {
             <li key={sub.label} className={styles.submenuItem} role="none">
               <a
                 href="#"
-                className={[
+                className={cn(
                   styles.submenuLink,
-                  sub.disabled ? styles.submenuLinkDisabled : '',
-                ]
-                  .filter(Boolean)
-                  .join(' ')}
+                  sub.disabled && styles.submenuLinkDisabled,
+                )}
                 role="menuitem"
                 aria-disabled={sub.disabled}
                 tabIndex={sub.disabled ? -1 : 0}
               >
                 <span>{sub.label}</span>
-                <img src="/icons/chevron-right.svg" alt="Chevron right" />
+                <Icon name="chevron-right" size={10} />
               </a>
             </li>
           ))}

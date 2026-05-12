@@ -45,6 +45,10 @@ export const NAV_ITEMS: NavItem[] = [
       { label: 'Music' },
     ],
   },
-  { label: 'Shop', hasChevron: true },
+  {
+    label: 'Shop',
+    hasChevron: true,
+    submenu: [{ label: 'Online Store' }],
+  },
   { label: 'Buy Now', hasChevron: false },
 ]
