@@ -1,4 +1,3 @@
-import { useRef, useState } from 'react'
 import type { NavItem } from '../../../constants/navigation'
 import styles from '../Header.module.scss'
 
@@ -7,24 +6,8 @@ type NavItemWithSubmenuProps = {
 }
 
 export function NavItemWithSubmenu({ item }: NavItemWithSubmenuProps) {
-  const [open, setOpen] = useState(false)
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-
-  function handleMouseEnter() {
-    if (closeTimer.current) clearTimeout(closeTimer.current)
-    setOpen(true)
-  }
-
-  function handleMouseLeave() {
-    closeTimer.current = setTimeout(() => setOpen(false), 120)
-  }
-
   return (
-    <li
-      className={styles.navItem}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <li className={styles.navItem}>
       <a href="#" className={styles.navLink}>
         <span>{item.label}</span>
         {item.hasChevron && (
@@ -32,7 +15,7 @@ export function NavItemWithSubmenu({ item }: NavItemWithSubmenuProps) {
         )}
       </a>
 
-      {item.submenu && open && (
+      {item.submenu && (
         <ul className={styles.submenu} role="menu">
           {item.submenu.map((sub) => (
             <li key={sub.label} className={styles.submenuItem} role="none">
