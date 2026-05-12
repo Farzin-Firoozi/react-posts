@@ -1,0 +1,83 @@
+@use '../../styles/variables' as *;
+
+// ── Card ──────────────────────────────────────────────────────────────────────
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 360 / 230;
+  object-fit: cover;
+  display: block;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.category {
+  font-family: $font-heading;
+  font-weight: $font-bold;
+  font-size: $text-xs;
+  color: $color-primary;
+  line-height: 1;
+}
+
+.title {
+  font-family: $font-heading;
+  font-weight: $font-bold;
+  font-size: $text-2xl;
+  color: $color-text;
+  line-height: $leading-snug;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-family: $font-body;
+  font-size: $text-xs;
+  color: $color-text-secondary;
+}
+
+.author {
+  color: $color-text;
+  font-weight: $font-medium;
+}
+
+.separator {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  border-radius: $radius-full;
+  background-color: $color-text-secondary;
+  flex-shrink: 0;
+}
+
+.description {
+  font-family: $font-body;
+  font-size: $text-sm;
+  color: $color-text-tertiary;
+  line-height: $leading-relaxed;
+}
+
+// ── Skeleton layout ───────────────────────────────────────────────────────────
+
+.skeletonImage {
+  aspect-ratio: 360 / 230;
+  width: 100%;
+  display: block;
+}
+
+.skeletonTitleGroup,
+.skeletonDescGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
