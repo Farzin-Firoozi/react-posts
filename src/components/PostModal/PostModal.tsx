@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, type FC } from 'react'
 import { createPortal } from 'react-dom'
 
 import { useKeyEvent } from '@/hooks/useKeyEvent'
@@ -9,8 +9,11 @@ import type { PostModalProps } from './types'
 
 const CLOSE_DURATION = 250
 
-export default function PostModalComponent({ post, onClose }: PostModalProps) {
+const PostModal: FC<PostModalProps> = (props) => {
+  const { post, onClose } = props
+
   const [closing, setClosing] = useState(false)
+
   const modalRef = useRef<HTMLDivElement>(null)
   const closeBtnRef = useRef<HTMLButtonElement>(null)
 
@@ -27,13 +30,7 @@ export default function PostModalComponent({ post, onClose }: PostModalProps) {
     locked: !!post,
   })
 
-  useKeyEvent(
-    {
-      key: 'Escape',
-      onKey: handleClose,
-    },
-    [post],
-  )
+  useKeyEvent({ key: 'Escape', onKey: handleClose }, [post])
 
   if (!post) return null
 
@@ -87,3 +84,5 @@ export default function PostModalComponent({ post, onClose }: PostModalProps) {
     document.body,
   )
 }
+
+export default PostModal

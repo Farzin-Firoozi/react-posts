@@ -1,9 +1,12 @@
-import { useState } from 'react'
-import PostModal from '../PostModal'
-import type { PostCardProps } from './types'
-import styles from './PostCard.module.scss'
+import { useState, type FC } from 'react'
 
-export default function PostCardComponent({ post, ...rest }: PostCardProps) {
+import PostModal from '../PostModal'
+import styles from './PostCard.module.scss'
+import type { PostCardProps } from './types'
+
+const PostCard: FC<PostCardProps> = (props) => {
+  const { post, ...rest } = props
+
   const [open, setOpen] = useState(false)
 
   return (
@@ -33,3 +36,5 @@ export default function PostCardComponent({ post, ...rest }: PostCardProps) {
     </>
   )
 }
+
+export default PostCard

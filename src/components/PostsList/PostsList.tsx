@@ -40,17 +40,18 @@ const PostsList: FC<PostsListProps> = (props) => {
         />
       ) : (
         <div ref={gridRef} className={styles.grid}>
-          {loading
-            ? Array.from({ length: SKELETON_COUNT }).map((_, i) => (
-                <div key={i} className={styles.item}>
-                  <PostCard.Skeleton />
-                </div>
-              ))
-            : filtered.map((post, i) => (
-                <div key={post.title + i} className={styles.item}>
-                  <PostCard post={post} />
-                </div>
-              ))}
+          {loading &&
+            Array.from({ length: SKELETON_COUNT }).map((_, i) => (
+              <div key={i} className={styles.item}>
+                <PostCard.Skeleton />
+              </div>
+            ))}
+
+          {filtered.map((post, i) => (
+            <div key={post.title + i} className={styles.item}>
+              <PostCard post={post} />
+            </div>
+          ))}
         </div>
       )}
     </section>

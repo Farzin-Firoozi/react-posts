@@ -34,14 +34,17 @@ export function usePosts(): UsePostsResult {
         const data: Post[] = await res.json()
         if (!cancelled) setPosts(data)
       } catch (err) {
-        if (!cancelled) setError(err instanceof Error ? err.message : 'Failed to fetch posts')
+        if (!cancelled)
+          setError(err instanceof Error ? err.message : 'Failed to fetch posts')
       } finally {
         if (!cancelled) setLoading(false)
       }
     }
 
     fetchPosts()
-    return () => { cancelled = true }
+    return () => {
+      cancelled = true
+    }
   }, [])
 
   return { posts, loading, error }

@@ -1,5 +1,5 @@
-import type { SkeletonProps } from './types'
 import styles from './Skeleton.module.scss'
+import type { SkeletonProps } from './types'
 
 export default function SkeletonComponent({
   width = '100%',

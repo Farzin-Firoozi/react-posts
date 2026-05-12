@@ -1,7 +1,8 @@
 import { useState, type FC } from 'react'
 
-import logoSrc from '../../assets/logo.svg'
 import { Icon } from '@/components/Icon'
+
+import logoSrc from '../../assets/logo.svg'
 import { NAV_ITEMS, type NavItem } from '../../constants/navigation'
 import styles from './Header.module.scss'
 

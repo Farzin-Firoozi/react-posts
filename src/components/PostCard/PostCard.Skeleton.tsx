@@ -1,11 +1,17 @@
-import type { PostCardSkeletonProps } from './types'
 import Skeleton from '../Skeleton'
 import styles from './PostCard.module.scss'
+import type { PostCardSkeletonProps } from './types'
 
-export default function PostCardSkeletonComponent({ lines = 3 }: PostCardSkeletonProps) {
+export default function PostCardSkeletonComponent({
+  lines = 3,
+}: PostCardSkeletonProps) {
   return (
     <article className={styles.card}>
-      <Skeleton height="100%" borderRadius="0" className={styles.skeletonImage} />
+      <Skeleton
+        height="100%"
+        borderRadius="0"
+        className={styles.skeletonImage}
+      />
       <div className={styles.content}>
         <Skeleton width="4rem" />
         <div className={styles.skeletonTitleGroup}>
