@@ -1,0 +1,394 @@
+@use '../../styles/variables' as *;
+
+$color-border: #e9e9e9;
+$nav-height: 58px;
+$header-top-height: 81px;
+
+// ── Header top (logo area) ────────────────────────────────────────────────────
+
+.header {
+  background: #fff;
+  border-bottom: 1px solid $color-border;
+  width: 100%;
+}
+
+.inner {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 $container-px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: $header-top-height;
+  padding: 0 $space-10;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo {
+  height: 27px;
+  width: auto;
+  display: block;
+}
+
+.hamburger {
+  display: none;
+  position: absolute;
+  left: $space-5;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $space-1;
+  color: $color-text;
+  line-height: 0;
+
+  @media (max-width: #{$bp-tablet - 1px}) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.searchBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $space-1;
+  color: $color-text;
+  display: flex;
+  align-items: center;
+  line-height: 0;
+  flex-shrink: 0;
+}
+
+// ── Sticky nav ────────────────────────────────────────────────────────────────
+
+.nav {
+  background: #fff;
+  border-bottom: 1px solid $color-border;
+  position: sticky;
+  top: 0;
+  z-index: $z-sticky;
+  transform: translateY(0);
+  transition: transform $transition-slow;
+
+  @media (max-width: #{$bp-tablet - 1px}) {
+    display: none;
+  }
+}
+
+.navHidden {
+  transform: translateY(-100%);
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-8;
+  list-style: none;
+  height: $nav-height;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+  font-family: $font-body;
+  font-weight: $font-medium;
+  font-size: $text-base;
+  color: $color-text;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+// ── Search area (right side of header top) ────────────────────────────────────
+
+.searchArea {
+  position: absolute;
+  right: $container-px;
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  overflow: hidden;
+  width: 0;
+  opacity: 0;
+  transition: width $transition-base, opacity $transition-base;
+}
+
+.searchBarOpen {
+  width: min(320px, 40vw);
+  opacity: 1;
+
+  @include mobile {
+    width: calc(100vw - 120px);
+  }
+}
+
+.searchInput {
+  flex: 1;
+  height: 34px;
+  padding: 0 $space-3;
+  font-family: $font-body;
+  font-size: $text-sm;
+  color: $color-text;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  outline: none;
+  min-width: 0;
+  transition: border-color $transition-fast;
+
+  &::placeholder {
+    color: $color-text-secondary;
+  }
+
+  &:focus {
+    border-color: $color-primary;
+  }
+
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+
+.searchClose {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $space-1;
+  color: $color-text;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+// ── Submenu dropdown ─────────────────────────────────────────────────────────
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 176px;
+  background: #fff;
+  border: 1px solid $color-border;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: $z-dropdown;
+}
+
+.submenuItem {
+  border-bottom: 1px solid $color-border;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.submenuLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-3 $space-5;
+  font-family: $font-body;
+  font-size: $text-xs;
+  font-weight: $font-regular;
+  color: $color-text;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.submenuLinkDisabled {
+  color: $color-text-secondary;
+  pointer-events: none;
+}
+
+// ── Mobile drawer overlay ─────────────────────────────────────────────────────
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: $z-modal - 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity $transition-base, visibility $transition-base;
+
+  @media (min-width: #{$bp-tablet}) {
+    display: none;
+  }
+}
+
+.overlayOpen {
+  opacity: 1;
+  visibility: visible;
+}
+
+// ── Mobile drawer panel ───────────────────────────────────────────────────────
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 320px;
+  background: #fff;
+  z-index: $z-modal;
+  transform: translateX(-100%);
+  transition: transform $transition-base;
+  border-right: 1px solid $color-border;
+  overflow-y: auto;
+
+  @media (min-width: #{$bp-tablet}) {
+    display: none;
+  }
+}
+
+.drawerOpen {
+  transform: translateX(0);
+}
+
+.drawerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $header-top-height;
+  padding: 0 $space-5;
+  border-bottom: 1px solid $color-border;
+}
+
+.drawerLogo {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $space-1;
+  color: $color-text;
+  display: flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.drawerNav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.drawerNavItem {
+  border-bottom: 1px solid $color-border;
+}
+
+.drawerNavLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: $space-4 $space-5;
+  font-family: $font-body;
+  font-weight: $font-medium;
+  font-size: $text-base;
+  color: $color-text;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.drawerNavToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.drawerChevron {
+  display: flex;
+  align-items: center;
+  transition: transform $transition-base;
+  flex-shrink: 0;
+}
+
+.drawerChevronOpen {
+  transform: rotate(180deg);
+}
+
+.drawerSubmenuWrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows $transition-base;
+}
+
+.drawerSubmenuWrapOpen {
+  grid-template-rows: 1fr;
+}
+
+.drawerSubmenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #fafafa;
+  border-top: 1px solid $color-border;
+  overflow: hidden;
+}
+
+.drawerSubmenuItem {
+  border-bottom: 1px solid $color-border;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.drawerSubmenuLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-3 $space-5 $space-3 $space-8;
+  font-family: $font-body;
+  font-size: $text-sm;
+  font-weight: $font-regular;
+  color: $color-text;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary;
+  }
+}

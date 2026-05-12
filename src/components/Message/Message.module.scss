@@ -1,0 +1,27 @@
+@use '../../styles/variables' as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-16 $space-5;
+  text-align: center;
+}
+
+.title {
+  font-family: $font-heading;
+  font-weight: $font-semibold;
+  font-size: $text-lg;
+  color: $color-text;
+}
+
+.description {
+  font-family: $font-body;
+  font-size: $text-sm;
+  color: $color-text-secondary;
+}
+
+.error .title {
+  color: $color-primary;
+}

@@ -83,6 +83,10 @@ $transition-fast:   150ms ease;
 $transition-base:   250ms ease;
 $transition-slow:   400ms ease;
 
+// Container
+$container-max: 1200px;
+$container-px: $space-5; // 20px
+
 // Z-index
 $z-dropdown: 100;
 $z-sticky:   200;
