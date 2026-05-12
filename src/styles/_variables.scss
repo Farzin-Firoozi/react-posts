@@ -38,10 +38,10 @@ $space-12: 3rem;     // 48px
 $space-16: 4rem;     // 64px
 $space-20: 5rem;     // 80px
 
-// Font families
-$font-heading: 'Poppins', sans-serif;
-$font-body: 'Inter', sans-serif;
-$font-mono: 'JetBrains Mono', monospace;
+// Font families (single stack — Roboto for UI, headings, and code samples)
+$font-heading: 'Roboto', sans-serif;
+$font-body: 'Roboto', sans-serif;
+$font-mono: 'Roboto', sans-serif;
 
 // Font sizes (rem)
 $text-xs:   0.75rem;   // 12px
