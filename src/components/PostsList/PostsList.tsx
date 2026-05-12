@@ -1,17 +1,28 @@
-import { useAutoAnimate } from "@formkit/auto-animate/react";
-import PostCard from "../PostCard";
-import Message from "../Message";
-import type { PostsListProps } from "./types";
-import styles from "./PostsList.module.scss";
+import type { FC } from 'react'
 
-const SKELETON_COUNT = 6;
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
-export default function PostsListComponent({
-  posts,
-  loading = false,
-  search = '',
-}: PostsListProps) {
-  const [gridRef] = useAutoAnimate<HTMLDivElement>();
+import Message from '@/components/Message'
+import PostCard from '@/components/PostCard'
+
+import type { Post } from '@/hooks/usePosts'
+import { useSearchParam } from '@/hooks/useSearchParam'
+
+import styles from './PostsList.module.scss'
+
+const SKELETON_COUNT = 6
+
+interface PostsListProps {
+  posts: Post[]
+  loading?: boolean
+}
+
+const PostsList: FC<PostsListProps> = (props) => {
+  const { posts, loading = false } = props
+
+  const [search] = useSearchParam()
+
+  const [gridRef] = useAutoAnimate<HTMLDivElement>()
 
   const filtered = search
     ? posts.filter(
@@ -19,7 +30,7 @@ export default function PostsListComponent({
           p.title.toLowerCase().includes(search.toLowerCase()) ||
           p.tags.toLowerCase().includes(search.toLowerCase()),
       )
-    : posts;
+    : posts
 
   const isEmpty = !loading && filtered.length === 0
 
@@ -46,5 +57,7 @@ export default function PostsListComponent({
         </div>
       )}
     </section>
-  );
+  )
 }
+
+export default PostsList

@@ -16,6 +16,7 @@ $header-top-height: 81px;
   max-width: $container-max;
   margin: 0 auto;
   padding: 0 $container-px;
+  position: relative;
 }
 
 .top {
@@ -125,30 +126,56 @@ $header-top-height: 81px;
 
 .searchArea {
   position: absolute;
-  right: $container-px;
+  right: 0;
   display: flex;
   align-items: center;
-  gap: $space-2;
+}
+
+// Desktop: absolute overlay sliding in from the right over .top
+.searchWrap {
+  @include tablet-up {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: $header-top-height;
+    display: flex;
+    align-items: center;
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: width $transition-base, opacity $transition-base;
+    background: #fff;
+  }
+
+  // Mobile: grid slide-down below .top
+  @include mobile {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows $transition-base;
+  }
+}
+
+.searchWrapOpen {
+  @include tablet-up {
+    width: min(340px, 50vw);
+    opacity: 1;
+  }
+
+  @include mobile {
+    grid-template-rows: 1fr;
+    border-top: 1px solid $color-border;
+  }
 }
 
 .searchBar {
   display: flex;
   align-items: center;
   gap: $space-2;
-  overflow: hidden;
-  width: 0;
-  opacity: 0;
-  transition:
-    width $transition-base,
-    opacity $transition-base;
-}
-
-.searchBarOpen {
-  width: min(320px, 40vw);
-  opacity: 1;
+  width: 100%;
 
   @include mobile {
-    width: calc(100vw - 120px);
+    overflow: hidden;
+    padding: $space-2 0;
   }
 }
 
