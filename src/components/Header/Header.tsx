@@ -84,7 +84,7 @@ const Header: FC<HeaderProps> = (props) => {
               aria-label="Open menu"
               aria-expanded={mobileMenuOpen}
             >
-              <img src="/icons/hamburger.svg" alt="Hamburger" />
+              <Icon name="menu" size={16} alt="" />
             </button>
 
             <a href="/" className={styles.logoLink} aria-label="Home">

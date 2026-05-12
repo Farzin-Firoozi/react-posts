@@ -42,7 +42,9 @@ $header-top-height: 81px;
 .hamburger {
   display: none;
   position: absolute;
-  left: $space-5;
+  left: 0;
+  top: 0;
+  height: $header-top-height;
   background: none;
   border: none;
   cursor: pointer;
@@ -135,6 +137,8 @@ $header-top-height: 81px;
 .searchArea {
   position: absolute;
   right: 0;
+  top: 0;
+  height: $header-top-height;
   display: flex;
   align-items: center;
 }

@@ -4,6 +4,7 @@ export type IconName =
   | 'chevron-right'
   | 'close'
   | 'chevron-down'
+  | 'menu'
 
 const ICON_SRC: Record<IconName, string> = {
   search: '/icons/search.svg',
@@ -11,6 +12,7 @@ const ICON_SRC: Record<IconName, string> = {
   'chevron-right': '/icons/chevron-right.svg',
   close: '/icons/close.svg',
   'chevron-down': '/icons/chevron-down.svg',
+  menu: '/icons/hamburger.svg',
 }
 
 const ICON_DEFAULT_ALT: Record<IconName, string> = {
@@ -19,6 +21,7 @@ const ICON_DEFAULT_ALT: Record<IconName, string> = {
   'chevron-right': 'Chevron right',
   close: 'Close',
   'chevron-down': 'Chevron down',
+  menu: 'Menu',
 }
 
 type IconProps = {
