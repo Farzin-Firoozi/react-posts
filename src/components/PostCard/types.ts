@@ -1,6 +1,6 @@
 import type { Post } from '../../hooks/usePosts'
 
-export interface PostCardProps {
+export interface PostCardProps extends React.HTMLAttributes<HTMLElement> {
   post: Post
 }
 
