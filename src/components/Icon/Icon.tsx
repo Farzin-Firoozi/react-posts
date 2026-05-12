@@ -1,27 +1,22 @@
+import chevronDownIcon from '@/assets/icons/chevron-down.svg'
+import chevronRightIcon from '@/assets/icons/chevron-right.svg'
+import closeIcon from '@/assets/icons/close.svg'
+import menuIcon from '@/assets/icons/hamburger.svg'
+import searchIcon from '@/assets/icons/search.svg'
+
 export type IconName =
   | 'search'
-  | 'chevron-left'
   | 'chevron-right'
   | 'close'
   | 'chevron-down'
   | 'menu'
 
 const ICON_SRC: Record<IconName, string> = {
-  search: '/icons/search.svg',
-  'chevron-left': '/icons/chevron-left.svg',
-  'chevron-right': '/icons/chevron-right.svg',
-  close: '/icons/close.svg',
-  'chevron-down': '/icons/chevron-down.svg',
-  menu: '/icons/hamburger.svg',
-}
-
-const ICON_DEFAULT_ALT: Record<IconName, string> = {
-  search: 'Search',
-  'chevron-left': 'Chevron left',
-  'chevron-right': 'Chevron right',
-  close: 'Close',
-  'chevron-down': 'Chevron down',
-  menu: 'Menu',
+  search: searchIcon,
+  'chevron-right': chevronRightIcon,
+  close: closeIcon,
+  'chevron-down': chevronDownIcon,
+  menu: menuIcon,
 }
 
 type IconProps = {
@@ -37,7 +32,7 @@ export function Icon({ name, size, alt, className }: IconProps) {
   return (
     <img
       src={ICON_SRC[name]}
-      alt={alt ?? ICON_DEFAULT_ALT[name]}
+      alt={alt ?? 'icon'}
       width={size}
       height={size}
       className={className}
