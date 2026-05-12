@@ -144,7 +144,7 @@ $header-top-height: 81px;
   @include tablet-up {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 20px;
     height: $header-top-height;
     display: flex;
     align-items: center;

@@ -8,6 +8,8 @@ import { Icon } from '@/components/Icon'
 
 import logoSrc from '@/assets/logo.svg'
 
+import { cn } from '@/utils/cn'
+
 import styles from './Header.module.scss'
 import HeaderDesktop from './HeaderDesktop'
 import HeaderMobile from './HeaderMobile'
@@ -105,12 +107,10 @@ const Header: FC<HeaderProps> = (props) => {
             </div>
           </div>
           <div
-            className={[
+            className={cn(
               styles.searchWrap,
-              searchOpen ? styles.searchWrapOpen : '',
-            ]
-              .filter(Boolean)
-              .join(' ')}
+              searchOpen && styles.searchWrapOpen,
+            )}
           >
             <div className={styles.searchBar}>
               <input
