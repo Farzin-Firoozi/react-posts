@@ -14,7 +14,7 @@ interface UseScrollDirectionParams {
 }
 
 export function useScrollDirection(
-  params?: UseScrollDirectionParams,
+  params: UseScrollDirectionParams = {},
 ): ScrollState {
   const { threshold = 4, idleDelay = 500 } = params
 
